@@ -1,4 +1,4 @@
-const { NotImplementedError } = require('../extensions/index.js');
+const { NotImplementedError } = require("../extensions/index.js");
 
 /**
  * Given an array of domains, return the object with the appearances of the DNS.
@@ -22,11 +22,60 @@ const { NotImplementedError } = require('../extensions/index.js');
  * }
  *
  */
-function getDNSStats(/* domains */) {
-  throw new NotImplementedError('Not implemented');
-  // remove line with error and write your code here
+function getDNSStats(domains) {
+  console.log(domains);
+  domains = domains.reverse();
+  domains = domains.sort((a, b) => a.length - b.length);
+  console.log(domains);
+  let domainsTransform = domains.map(x =>
+    x
+      .split(".")
+      .reverse()
+      .join(".")
+  );
+  console.log(domainsTransform);
+  let domainArray = [];
+  let resultObject = {};
+  for (let i = 0; i < domainsTransform.length; i++) {
+    for (let j = 0; j < domainsTransform[i].length; j++) {
+      if (
+        domainsTransform[i][j] === "." ||
+        j === domainsTransform[i].length - 1
+      ) {
+        let iArray = "";
+        if (j === domainsTransform[i].length - 1) {
+          iArray = domainsTransform[i].slice(0, j + 1);
+        } else {
+          iArray = domainsTransform[i].slice(0, j);
+        }
+        // console.log(iArray);
+        domainArray.push(iArray);
+        // console.log(domainsTransform);
+      }
+    }
+  }
+  // console.log(domainsTransform);
+  // console.log(domainArray);
+  let resultArray = domainArray.sort();
+  console.log(resultArray);
+  let count = 1;
+  for (let i = 0; i < resultArray.length + 1; i++) {
+    if (resultArray[i] === resultArray[i - 1]) {
+      count = count + 1;
+    } else if (i > 0) {
+      let key = `.${resultArray[i - 1]}`;
+      resultObject[key] = count;
+      count = 1;
+    }
+  }
+  console.log(resultObject);
+  return resultObject;
 }
 
+// getDNSStats(["code.yandex.ru", "music.yandex.ru", "yandex.ru"]);
+// getDNSStats(["epam.com"]);
+// getDNSStats(["epam.com", "info.epam.com"]);
+// getDNSStats([]);
 module.exports = {
   getDNSStats
 };
