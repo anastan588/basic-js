@@ -1,23 +1,103 @@
-const { NotImplementedError } = require('../extensions/index.js');
+const { NotImplementedError } = require("../extensions/index.js");
 
 /**
  * Create transformed array based on the control sequences that original
  * array contains
- * 
+ *
  * @param {Array} arr initial array
  * @returns {Array} transformed array
- * 
+ *
  * @example
- * 
+ *
  * transform([1, 2, 3, '--double-next', 4, 5]) => [1, 2, 3, 4, 4, 5]
  * transform([1, 2, 3, '--discard-prev', 4, 5]) => [1, 2, 4, 5]
- * 
+ *
  */
-function transform(/* arr */) {
-  throw new NotImplementedError('Not implemented');
-  // remove line with error and write your code here
+function transform(arr) {
+  console.log(arr);
+  if (!Array.isArray(arr)) {
+    throw new Error("'arr' parameter must be an instance of the Array!");
+  } 
+  let changeArr = [...arr];
+  console.log(changeArr);
+  if (changeArr.length === 0) {
+    return changeArr;
+  } else {
+    let prev = 0;
+    let next = 0;
+    for (let i = 0; i < changeArr.length; i++) {
+      if (changeArr[i] === "--double-next") {
+        next = changeArr[i + 1];
+        prev = "double";
+        if (i + 1 > changeArr.length - 1) {
+          changeArr.splice([i], 1);
+        } else {
+          changeArr.splice([i], 1, changeArr[i + 1]);
+        }
+      } else if (changeArr[i] === "--discard-prev") {
+        if (prev === 0) {
+          prev = "discard";
+        }
+        if (i === 0) {
+          changeArr.splice([i], 1);
+          changeArr.splice([changeArr.length - 1], 0, changeArr[changeArr.length - 1]);
+        }
+        if (next !== 0 && prev === "discard") {
+          changeArr.splice([i], 1);
+        } else if (next !== 0 && prev === "double") {
+          changeArr.splice([i - 1], 2);
+        } else {
+          changeArr.splice([i - 1], 2);
+        }
+      } else if (changeArr[i] === "--discard-next") {
+        prev = "discard";
+        // console.log(prev);
+        next = changeArr[i];
+        changeArr.splice([i], 2);
+        i = i - 1;
+      } else if (changeArr[i] === "--double-prev") {
+        // console.log(prev);
+        // console.log(next !== 0);
+        // console.log(prev === "discard");
+        if (i === 0) {
+          changeArr.splice([i], 1, changeArr[i + 1]);
+        }
+        if (next !== 0 && prev === "double") {
+          changeArr.splice([i], 1, next);
+        } else if (next !== 0 && prev === "discard") {
+          changeArr.splice([i], 1);
+        } else if (i - 1 < 0) {
+          changeArr.splice([i], 1);
+        } else {
+          changeArr.splice([i], 1, changeArr[i - 1]);
+          console.log(changeArr);
+        }
+      }
+    }
+    console.log(changeArr);
+    return changeArr;
+  }
 }
 
+// transform(3.312312);
+// transform([1, 2, 3, "--double-next", 4, 5]);
+// transform([1, 2, 3, "--discard-prev", 4, 5]);
+// transform([1, 2, 3, "--discard-next", 1337, "--double-prev", 4, 5]);
+// transform([1, 2, 3, "--double-next", 1337, "--double-prev", 4, 5]);
+// transform([1, 2, 3, "--discard-next", 1337, "--discard-prev", 4, 5]);
+// transform([1, 2, 3, "--double-next", 1337, "--discard-prev", 4, 5]);
+
+// transform([]);
+// const cases = [
+//   ["--discard-prev", 1, 2, 3],
+//   ["--double-prev", 1, 2, 3],
+//   [1, 2, 3, "--double-next"],
+//   [1, 2, 3, "--discard-next"],
+// ];
+// cases.forEach((currCase) => {
+//   transform(currCase);
+// });
+
 module.exports = {
-  transform
+  transform,
 };
