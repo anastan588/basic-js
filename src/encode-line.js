@@ -11,12 +11,10 @@ const { NotImplementedError } = require("../extensions/index.js");
  *
  */
 function encodeLine(str) {
-  console.log(str);
   if (str.length === 0) {
     return str;
   } else {
     let startArray = str.split("");
-    console.log(startArray);
     let resultArray = [];
     let count = 0;
     let previousCount = 1;
@@ -27,8 +25,6 @@ function encodeLine(str) {
       } else {
         count = 0;
       }
-      console.log(i === startArray.length - 1);
-      console.log(previousCount);
       if (count === 0 && previousCount > 1) {
         if (i === startArray.length - 1) {
           resultArray.push(previousCount);
@@ -47,7 +43,6 @@ function encodeLine(str) {
         i === 0 &&
         startArray[i] !== startArray[i + 1]
       ) {
-        console.log(startArray[i]);
         resultArray.push(startArray[i]);
       } else if (
         count === 0 &&
@@ -57,9 +52,7 @@ function encodeLine(str) {
         resultArray.push(startArray[i]);
       }
     }
-    console.log(resultArray);
     let result = resultArray.join("");
-    console.log(result);
     return result;
   }
 }

@@ -23,17 +23,14 @@ const { NotImplementedError } = require("../extensions/index.js");
  *
  */
 function getDNSStats(domains) {
-  console.log(domains);
   domains = domains.reverse();
   domains = domains.sort((a, b) => a.length - b.length);
-  console.log(domains);
   let domainsTransform = domains.map(x =>
     x
       .split(".")
       .reverse()
       .join(".")
   );
-  console.log(domainsTransform);
   let domainArray = [];
   let resultObject = {};
   for (let i = 0; i < domainsTransform.length; i++) {
@@ -48,16 +45,11 @@ function getDNSStats(domains) {
         } else {
           iArray = domainsTransform[i].slice(0, j);
         }
-        // console.log(iArray);
         domainArray.push(iArray);
-        // console.log(domainsTransform);
       }
     }
   }
-  // console.log(domainsTransform);
-  // console.log(domainArray);
   let resultArray = domainArray.sort();
-  console.log(resultArray);
   let count = 1;
   for (let i = 0; i < resultArray.length + 1; i++) {
     if (resultArray[i] === resultArray[i - 1]) {
@@ -68,7 +60,6 @@ function getDNSStats(domains) {
       count = 1;
     }
   }
-  console.log(resultObject);
   return resultObject;
 }
 

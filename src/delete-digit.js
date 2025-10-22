@@ -12,24 +12,17 @@ const { NotImplementedError } = require("../extensions/index.js");
  *
  */
 function deleteDigit(n) {
-  console.log(n);
   let nArray = n.toString().split("");
-  console.log(nArray);
   let digitsArray = [...nArray];
-  console.log(digitsArray);
   let resultArray = [];
   for (let i = 0; i < nArray.length; i++) {
     digitsArray.splice([i], 1);
-    console.log(digitsArray)
     let digitString = digitsArray.join("");
-    console.log(digitString);
     resultArray.push(digitString);
     digitsArray = [...nArray];
   }
-  console.log(resultArray);
   resultArray = resultArray.map((x) => parseInt(x));
   resultArray.sort((a, b) => a - b);
-  console.log(resultArray);
   let result = resultArray[resultArray.length - 1];
   return result;
 }

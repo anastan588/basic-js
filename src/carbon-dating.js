@@ -23,12 +23,10 @@ function dateSample(sampleActivity) {
     sampleActivity < 15 &&
     sampleActivity > 0
   ) {
-    console.log(sampleActivity);
     let livingActivity = 15;
     let result = Math.ceil(
       (Math.log(livingActivity / sampleActivity) / 0.693) * 5730
     );
-    console.log(result);
     return result;
   } else {
     return false;
