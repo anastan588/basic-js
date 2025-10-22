@@ -1,4 +1,4 @@
-const { NotImplementedError } = require("../extensions/index.js");
+const { NotImplementedError } = require('../lib');
 
 /**
  * Implement class VigenereCipheringMachine that allows us to create
@@ -28,32 +28,32 @@ const { NotImplementedError } = require("../extensions/index.js");
  *
  */
 const alphabet = [
-  "A",
-  "B",
-  "C",
-  "D",
-  "E",
-  "F",
-  "G",
-  "H",
-  "I",
-  "J",
-  "K",
-  "L",
-  "M",
-  "N",
-  "O",
-  "P",
-  "Q",
-  "R",
-  "S",
-  "T",
-  "U",
-  "V",
-  "W",
-  "X",
-  "Y",
-  "Z",
+  'A',
+  'B',
+  'C',
+  'D',
+  'E',
+  'F',
+  'G',
+  'H',
+  'I',
+  'J',
+  'K',
+  'L',
+  'M',
+  'N',
+  'O',
+  'P',
+  'Q',
+  'R',
+  'S',
+  'T',
+  'U',
+  'V',
+  'W',
+  'X',
+  'Y',
+  'Z',
 ];
 
 class VigenereCipheringMachine {
@@ -63,11 +63,10 @@ class VigenereCipheringMachine {
   }
 
   encrypt(text, key) {
-    if (!text || !key) throw new Error("Incorrect arguments!");
+    if (!text || !key) throw new Error('Incorrect arguments!');
     text = text.toUpperCase();
     key = key.toUpperCase();
-    let textStartArray = text.split("");
-    console.log(textStartArray);
+    let textStartArray = text.split('');
     let textArray = [];
     for (let i = 0; i < textStartArray.length; i++) {
       for (let j = 0; j < alphabet.length; j++) {
@@ -76,10 +75,7 @@ class VigenereCipheringMachine {
         }
       }
     }
-    console.log(textArray);
-    let keyArray = key.split("");
-    console.log(textArray);
-    console.log(keyArray);
+    let keyArray = key.split('');
     let textNumberArray = [];
     let keyNumberArray = [];
     for (let i = 0; i < textArray.length; i++) {
@@ -96,11 +92,9 @@ class VigenereCipheringMachine {
         }
       }
     }
-    console.log(textNumberArray);
-    console.log(keyNumberArray);
     let encryptNumberArray = [];
     let encriptkey = 0;
-    let j=0;
+    let j = 0;
     for (let i = 0; i < textNumberArray.length; i++) {
       if (j > keyNumberArray.length - 1) {
         j = 0;
@@ -110,18 +104,13 @@ class VigenereCipheringMachine {
         encriptkey = encriptkey - alphabet.length;
       }
       encryptNumberArray.push(encriptkey);
-      j = j+1;
+      j = j + 1;
     }
-    console.log(encryptNumberArray);
     let k = 0;
     for (let i = 0; i < textStartArray.length; i++) {
-      console.log(k);
       let count = 0;
       for (let j = 0; j < alphabet.length; j++) {
         if (textStartArray[i] === alphabet[j]) {
-          console.log(encryptNumberArray[k]);
-          console.log(alphabet[encryptNumberArray[k]]);
-          console.log(textStartArray[i]);
           k = k + 1;
           count = 1;
         }
@@ -130,22 +119,19 @@ class VigenereCipheringMachine {
         textStartArray[i] = alphabet[encryptNumberArray[k - 1]];
       }
     }
-    console.log(textStartArray);
     if (this.typeOfFunction === false) {
       textStartArray = textStartArray.reverse();
     }
-    let result = textStartArray.join("");
-    console.log(result);
+    let result = textStartArray.join('');
     return result;
   }
 
   decrypt(text, key) {
-    if (!text || !key) throw new Error("Incorrect arguments!");
+    if (!text || !key) throw new Error('Incorrect arguments!');
     text = text.toUpperCase();
     key = key.toUpperCase();
-    let keyArray = key.split("");
-    let textStartArray = text.split("");
-    console.log(textStartArray);
+    let keyArray = key.split('');
+    let textStartArray = text.split('');
     let textArray = [];
     for (let i = 0; i < textStartArray.length; i++) {
       for (let j = 0; j < alphabet.length; j++) {
@@ -154,8 +140,6 @@ class VigenereCipheringMachine {
         }
       }
     }
-    console.log(textArray);
-    console.log(keyArray);
     let textNumberArray = [];
     let keyNumberArray = [];
     for (let i = 0; i < textArray.length; i++) {
@@ -172,35 +156,25 @@ class VigenereCipheringMachine {
         }
       }
     }
-    console.log(textNumberArray);
-    console.log(keyNumberArray);
     let encryptNumberArray = [];
     let encriptkey = 0;
-    let j=0;
+    let j = 0;
     for (let i = 0; i < textNumberArray.length; i++) {
       if (j > keyNumberArray.length - 1) {
         j = 0;
       }
-      // console.log(j);
       encriptkey = textNumberArray[i] - keyNumberArray[j];
-      // console.log(encriptkey);
       if (encriptkey < 0) {
         encriptkey = encriptkey + alphabet.length;
       }
-      console.log(encriptkey);
       encryptNumberArray.push(encriptkey);
-      j = j+1;
+      j = j + 1;
     }
-    console.log(encryptNumberArray);
     let k = 0;
     for (let i = 0; i < textStartArray.length; i++) {
-      // console.log(k);
       let count = 0;
       for (let j = 0; j < alphabet.length; j++) {
         if (textStartArray[i] === alphabet[j]) {
-          // console.log(encryptNumberArray[k]);
-          // console.log(alphabet[encryptNumberArray[k]]);
-          // console.log(textStartArray[i]);
           k = k + 1;
           count = 1;
         }
@@ -209,12 +183,10 @@ class VigenereCipheringMachine {
         textStartArray[i] = alphabet[encryptNumberArray[k - 1]];
       }
     }
-    console.log(textStartArray);
     if (this.typeOfFunction === false) {
       textStartArray = textStartArray.reverse();
     }
-    let result = textStartArray.join("");
-    console.log(result);
+    let result = textStartArray.join('');
     return result;
   }
 }
@@ -230,5 +202,7 @@ class VigenereCipheringMachine {
 // directMachine.decrypt('UWJJW XAGWLNFM VNNNDXHVWWL :)', 'js');
 
 module.exports = {
+  directMachine: new VigenereCipheringMachine(),
+  reverseMachine: new VigenereCipheringMachine(false),
   VigenereCipheringMachine,
 };

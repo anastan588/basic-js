@@ -45,7 +45,6 @@ function minesweeper(matrix) {
         }
         if (i > 0 && matrix[i - 1][j] === true) {
           countMinesAround = countMinesAround + 1;
-          console.log("[i - 1][j]");
         }
         if (
           i > 0 &&

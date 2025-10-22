@@ -1,4 +1,4 @@
-const { NotImplementedError } = require("../extensions/index.js");
+const { NotImplementedError } = require('../lib');;
 
 /**
  * Calculate turns number and time (in seconds) required
@@ -17,19 +17,13 @@ const { NotImplementedError } = require("../extensions/index.js");
  *
  */
 function calculateHanoi(disksNumber, turnsSpeed) {
-  console.log(disksNumber);
-  console.log(turnsSpeed);
   let numberOfSteps = Math.pow(2, disksNumber) - 1;
-  console.log(numberOfSteps);
   let secondsinHour = 60 * 60;
-  //console.log(secondsinHour);
   let resultObject = {};
   resultObject["turns"] = numberOfSteps;
   let speedInSecond = turnsSpeed / secondsinHour;
   let timeOfResolve = Math.floor(numberOfSteps / speedInSecond);
-  console.log(timeOfResolve);
   resultObject["seconds"] = timeOfResolve;
-  console.log(resultObject);
   return resultObject;
 }
 

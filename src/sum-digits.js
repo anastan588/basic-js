@@ -1,4 +1,4 @@
-const { NotImplementedError } = require("../extensions/index.js");
+const { NotImplementedError } = require('../lib');;
 
 /**
  * Given a number, replace this number with
@@ -15,12 +15,10 @@ const { NotImplementedError } = require("../extensions/index.js");
 function getSumOfDigits(n) {
   let nString = n.toString();
   let nArray = nString.split("");
-  console.log(nArray);
   let sum1 = 0;
   for (let i = 0; i < nArray.length; i++) {
     sum1 = sum1 + parseInt(nArray[i]);
   }
-  console.log(sum1);
   let sumArr = sum1.toString().split("");
   if (sumArr.length === 1) {
     n = sum1;
@@ -29,10 +27,8 @@ function getSumOfDigits(n) {
     for (let i = 0; i < sumArr.length; i++) {
       sum2 = sum2 + parseInt(sumArr[i]);
     }
-    // console.log(sum2);
     n = sum2;
   }
-  console.log(n);
   return n;
 }
 

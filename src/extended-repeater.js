@@ -1,4 +1,4 @@
-const { NotImplementedError } = require("../extensions/index.js");
+const { NotImplementedError } = require('../lib');;
 
 /**
  * Create a repeating string based on the given parameters
@@ -21,8 +21,6 @@ const { NotImplementedError } = require("../extensions/index.js");
  *
  */
 function repeater(str, options) {
-  console.log(str);
-  console.log(options);
   if (options.separator === undefined) {
     options.separator = "+";
   }
@@ -42,7 +40,6 @@ function repeater(str, options) {
     options.additionRepeatTimes = 1;
   }
   let additionArray = [];
-  console.log(options.additionRepeatTimes);
   for (let i = 1; i <= options.additionRepeatTimes; i++) {
     if (i < options.additionRepeatTimes) {
       additionArray.push(`${options.addition}${options.additionSeparator}`);
@@ -50,21 +47,15 @@ function repeater(str, options) {
       additionArray.push(`${options.addition}`);
     }
   }
-  console.log(additionArray);
   let additionString = additionArray.join("");
-  console.log(additionString);
   let resultArray = [];
   for (let i = 1; i <= options.repeatTimes; i++) {
-    // console.log( options.repeatTimes);
-    // console.log(i);
-    // console.log(options.addition);
     if (i < options.repeatTimes) {
       resultArray.push(`${str}${additionString}${options.separator}`);
     } else if (i === options.repeatTimes) {
       resultArray.push(`${str}${additionString}`);
     }
   }
-  console.log(resultArray);
   let result = resultArray.join("");
   return result;
 }

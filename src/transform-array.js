@@ -1,4 +1,4 @@
-const { NotImplementedError } = require("../extensions/index.js");
+const { NotImplementedError } = require('../lib');;
 
 /**
  * Create transformed array based on the control sequences that original
@@ -18,12 +18,10 @@ const { NotImplementedError } = require("../extensions/index.js");
  *
  */
 function transform(arr) {
-  console.log(arr);
   if (!Array.isArray(arr)) {
     throw new Error("'arr' parameter must be an instance of the Array!");
   } 
   let changeArr = [...arr];
-  console.log(changeArr);
   if (changeArr.length === 0) {
     return changeArr;
   } else {
@@ -55,14 +53,10 @@ function transform(arr) {
         }
       } else if (changeArr[i] === "--discard-next") {
         prev = "discard";
-        // console.log(prev);
         next = changeArr[i];
         changeArr.splice([i], 2);
         i = i - 1;
       } else if (changeArr[i] === "--double-prev") {
-        // console.log(prev);
-        // console.log(next !== 0);
-        // console.log(prev === "discard");
         if (i === 0) {
           changeArr.splice([i], 1, changeArr[i + 1]);
         }
@@ -74,11 +68,9 @@ function transform(arr) {
           changeArr.splice([i], 1);
         } else {
           changeArr.splice([i], 1, changeArr[i - 1]);
-          console.log(changeArr);
         }
       }
     }
-    console.log(changeArr);
     return changeArr;
   }
 }

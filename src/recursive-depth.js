@@ -1,4 +1,4 @@
-const { NotImplementedError } = require("../extensions/index.js");
+const { NotImplementedError } = require('../lib');;
 
 /**
  * Implement class DepthCalculator with method calculateDepth
@@ -15,15 +15,12 @@ const { NotImplementedError } = require("../extensions/index.js");
  */
 class DepthCalculator {
   calculateDepth(arr) {
-    // console.log(this);
-    console.log(arr);
     let depth = 1;
     for (let i = 0; i < arr.length; i++) {
       if (Array.isArray(arr[i])) {
         depth = Math.max(depth, this.calculateDepth(arr[i])+1);
       }
     }
-    console.log(depth);
     return depth;
   }
 }

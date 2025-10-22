@@ -1,4 +1,4 @@
-const { NotImplementedError } = require("../extensions/index.js");
+const { NotImplementedError } = require('../lib');;
 
 /**
  * There's a list of file, since two files cannot have equal names,
@@ -16,7 +16,6 @@ const { NotImplementedError } = require("../extensions/index.js");
  *
  */
 function renameFiles(names) {
-  console.log(names);
   let result = [];
   let number = 1;
   for (let i = 0; i < names.length; i++) {
@@ -27,12 +26,10 @@ function renameFiles(names) {
         number = number + 1;
       }
       let addition = `(${number})`;
-      console.log(number);
       result.push(`${names[i]}${addition}`);
       number = 1;
     }
   }
-  console.log(result);
   return result;
 }
 

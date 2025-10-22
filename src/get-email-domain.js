@@ -1,4 +1,4 @@
-const { NotImplementedError } = require('../lib');
+const { NotImplementedError } = require('../lib');;
 
 /**
  * Given an email address, return it's domain.
@@ -11,24 +11,19 @@ const { NotImplementedError } = require('../lib');
  *
  */
 function getEmailDomain(email) {
-  console.log(email);
   let emailArray = email.split("");
-  console.log(email);
   let domainArray = 0;
   for (let i=0;i<emailArray.length; i++) {
     if (emailArray[i]==="@") {
       domainArray = emailArray.splice(i+1,emailArray.length);
     }
   }
-  console.log(domainArray);
   for (let i=0;i<domainArray.length; i++) {
     if (domainArray[i]==="@") {
       domainArray = domainArray.splice(i+1,domainArray.length);
     }
   }
-  console.log(domainArray);
   let result = domainArray.join("");
-  console.log(result);
   return result;
 }
 
