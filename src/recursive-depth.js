@@ -6,6 +6,7 @@ const { NotImplementedError } = require("../extensions/index.js");
  *
  * @example
  *
+ *
  * const depthCalc = new DepthCalculator();
  * depthCalc.calculateDepth([1, 2, 3, 4, 5]) => 1
  * depthCalc.calculateDepth([1, 2, 3, [4, 5]]) => 2
@@ -52,5 +53,5 @@ class DepthCalculator {
 // ]);
 
 module.exports = {
-  DepthCalculator
+  depthCalculator: new DepthCalculator(),
 };

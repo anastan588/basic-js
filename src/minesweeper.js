@@ -1,4 +1,4 @@
-const { NotImplementedError } = require("../extensions/index.js");
+const { NotImplementedError } = require('../lib');
 
 /**
  * In the popular Minesweeper game you have a board with some mines and those cells
@@ -34,20 +34,14 @@ function minesweeper(matrix) {
   }
 
   let resultMatrix = JSON.parse(JSON.stringify(matrix));
-  console.log(resultMatrix===matrix);
-  // console.log(countMines);
   for (let i = 0; i < matrix.length; i++) {
     for (let j = 0; j < matrix[i].length; j++) {
       if (countMines === 0) {
         resultMatrix[i][j] = countMines;
       } else if (countMines > 0) {
         let countMinesAround = 0;
-        console.log(matrix[i][j]);
-        console.log(i);
-        console.log(j);
         if (i > 0 && j > 0 && matrix[i - 1][j - 1] === true) {
           countMinesAround = countMinesAround + 1;
-          console.log("[i - 1][j - 1]");
         }
         if (i > 0 && matrix[i - 1][j] === true) {
           countMinesAround = countMinesAround + 1;
@@ -59,23 +53,18 @@ function minesweeper(matrix) {
           matrix[i - 1][j + 1] === true
         ) {
           countMinesAround = countMinesAround + 1;
-          console.log("[i - 1][j + 1]");
         }
         if (j > 0 && matrix[i][j - 1] === true) {
           countMinesAround = countMinesAround + 1;
-          console.log("[i][j - 1]");
         }
         if (j < matrix[i].length - 1 && matrix[i][j + 1] === true) {
           countMinesAround = countMinesAround + 1;
-          console.log("[i][j + 1]");
         }
         if (i < matrix.length - 1 && j > 0 && matrix[i + 1][j - 1] === true) {
           countMinesAround = countMinesAround + 1;
-          console.log("[i + 1][j - 1]");
         }
         if (i < matrix.length - 1 && matrix[i + 1][j] === true) {
           countMinesAround = countMinesAround + 1;
-          console.log("[i + 1][j]");
         }
         if (
           i < matrix.length - 1 &&
@@ -83,15 +72,12 @@ function minesweeper(matrix) {
           matrix[i + 1][j + 1] === true
         ) {
           countMinesAround = countMinesAround + 1;
-          console.log("[i + 1][j + 1]");
         }
         resultMatrix[i][j] = countMinesAround;
         
       }
     }
   }
-  console.log(matrix);
-  console.log(resultMatrix);
   return resultMatrix;
 }
 // minesweeper([
